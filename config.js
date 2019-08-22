@@ -197,5 +197,5 @@ const levels = {
         ],
         "right": [3],
         "factor": 1
-    }]
-};
+    }
+]};

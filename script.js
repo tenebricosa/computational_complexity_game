@@ -292,9 +292,20 @@ class GamePage {
         this.answers.map(x => x.disable());
         const round = this.rounds[this.currentRoundIndex];
         round.right.map(el => {
-            if (el === number && !answered) {
-                this.rightAnswer(number, round.factor);
-                answered = true;
+            if (el === number) {
+                if (!answered) {
+                    this.rightAnswer(number, round.factor);
+                    answered = true;
+                };
+                this.answers[el].good();
+                round.right.map(rightAnswer => {
+                    this.answers[rightAnswer].good();
+                });
+                setTimeout(() => {
+                    round.right.map(rightAnswer => {
+                        this.answers[rightAnswer].reset();
+                    });
+                }, 1000)
             }
             if (el !== number && !answered) {
                 this.badAnswer(round.right, number);

@@ -209,8 +209,13 @@ body {
     line-height: 50px;
 }
 
-.button:hover,
 .button:focus {
+    border-color: var(--accent-color);
+    outline: none;
+}
+
+.button:hover,
+.button.submit:focus {
     color: var(--accent-color);
     border-color: var(--accent-color);
     outline: none;
