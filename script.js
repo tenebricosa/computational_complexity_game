@@ -305,7 +305,7 @@ class GamePage {
                     round.right.map(rightAnswer => {
                         this.answers[rightAnswer].reset();
                     });
-                }, 1000)
+                }, 2000)
             }
             if (el !== number && !answered) {
                 this.badAnswer(round.right, number);
@@ -328,7 +328,7 @@ class GamePage {
         setTimeout(() => {
             this.answers[number].reset();
             this.nextRound();
-        }, 1000)
+        }, 2000)
     }
 
     badAnswer(rightAnswers, number) {
