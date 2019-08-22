@@ -156,14 +156,10 @@ body {
 
 .task-img {
     width: 500px;
-    height: 250px;
+    height: 320px;
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
-}
-
-.answer-img {
-    width: 320px;
 }
 
 .root {
@@ -204,7 +200,7 @@ body {
     padding: 0 24px 0;
     margin: 30px 0;
     min-width: 170px;
-    font-size: 24px;
+    font-size: 23px;
     font-weight: 600;
     cursor: pointer;
     box-sizing: border-box;
@@ -236,30 +232,13 @@ body {
     box-shadow: rgba(0, 0, 0, 0.1) 0px 5px 25px 0;
     border: none;
     overflow: hidden;
-    position: absolute;
     border-radius: 7px;
     padding: 10px;
     cursor: pointer;
-}
-
-.answer-1 {
-    top: 0;
-    left: 0;
-}
-
-.answer-2 {
-    top: 0;
-    right: 0;
-}
-
-.answer-3 {
-    bottom: 0;
-    left: 0;
-}
-
-.answer-4 {
-    bottom: 0;
-    right: 0;
+    width: 320px;
+    margin: 20px 10px;
+    height: 100px;
+    line-height: 1.5;
 }
 
 .registration {
@@ -441,6 +420,10 @@ th {
 
 .button-inner {
     background-color: white;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .game-name {
