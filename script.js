@@ -260,15 +260,15 @@ class GamePage {
         this.livesContainer = document.querySelector(".lives");
         this.answer = this.answer.bind(this);
         this.answers = [1, 2, 3, 4].map(x => new AnswerButton(document.querySelector(`.answer-${x}`), this.answer));
-        this.help5050Button = document.querySelector(".help5050");
+        // this.help5050sButton = document.querySelector(".help5050");
         this.timer = new Timer(config.time, () => this.badAnswer(this.rounds[this.currentRoundIndex].right, null));
 
-        this.help5050 = this.help5050.bind(this);
+        // this.help5050 = this.help5050.bind(this);
     }
 
     initialize() {
-        this.help5050Button.classList.remove("invisible");
-        this.help5050Button.addEventListener("click", this.help5050);
+    //     this.help5050Button.classList.remove("invisible");
+    //     this.help5050Button.addEventListener("click", this.help5050);
         this.page.classList.remove("invisible");
         this.livesContainer.textContent = this.lives;
     }
@@ -280,7 +280,7 @@ class GamePage {
     }
 
     dispose() {
-        this.help5050Button.removeEventListener("click", this.help5050);
+        // this.help5050Button.removeEventListener("click", this.help5050);
         this.timer.stop();
         this.clearTask();
         this.clearDescription();
@@ -296,7 +296,9 @@ class GamePage {
         this.timer.stop();
         this.answers.map(x => x.disable());
         const round = this.rounds[this.currentRoundIndex];
-        round.right === number ? this.rightAnswer(number, round.factor) : this.badAnswer(round.right, number);
+        round.right.map(el => {
+            el === number ? this.rightAnswer(number, round.factor) : this.badAnswer(round.right, number);
+        });
     }
 
     nextRound() {
@@ -316,12 +318,16 @@ class GamePage {
         }, 1000)
     }
 
-    badAnswer(rightAnswer, number) {
+    badAnswer(rightAnswers, number) {
         number !== null && this.answers[number].bad();
-        this.answers[rightAnswer].good();
+        rightAnswers.map(rightAnswer => {
+            this.answers[rightAnswer].good();
+        });
         setTimeout(() => {
             number !== null && this.answers[number].reset();
-            this.answers[rightAnswer].reset();
+            rightAnswers.map(rightAnswer => {
+                this.answers[rightAnswer].reset();
+            });
             this.decrementLives();
             if (this.lives > 0) {
                 this.nextRound()
@@ -374,15 +380,15 @@ class GamePage {
         return p;
     }
 
-    help5050() {
-        this.help5050Button.classList.add("invisible");
-        const firstWrongAnswer = this.answers.filter(x => !x.isRight)[random(0, 3)];
-        const secondWrongAnswer = this.answers.filter(x => !x.isRight && x.index !== firstWrongAnswer.index)[random(0, 2)];
-        firstWrongAnswer.wrongAnswer();
-        firstWrongAnswer.clearAnswer();
-        secondWrongAnswer.wrongAnswer();
-        secondWrongAnswer.clearAnswer();
-    }
+    // help5050() {
+    //     this.help5050Button.classList.add("invisible");
+    //     const firstWrongAnswer = this.answers.filter(x => !x.isRight)[random(0, 3)];
+    //     const secondWrongAnswer = this.answers.filter(x => !x.isRight && x.index !== firstWrongAnswer.index)[random(0, 2)];
+    //     firstWrongAnswer.wrongAnswer();
+    //     firstWrongAnswer.clearAnswer();
+    //     secondWrongAnswer.wrongAnswer();
+    //     secondWrongAnswer.clearAnswer();
+    // }
 }
 
 class ResultPage {

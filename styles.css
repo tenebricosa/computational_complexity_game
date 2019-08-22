@@ -176,6 +176,10 @@ body {
     height: 100%;
 }
 
+.page.registration {
+    width: auto;
+}
+
 .block {
     border-top: none;
     border-left: none;
@@ -440,9 +444,9 @@ th {
 }
 
 .game-name {
-    color: var(--accent-color);
+    background: var(--accent-color);
+    color: white;
     font-size: 80px;
     margin-top: 0;
-    padding-top: 30px;
     font-weight: normal;
 }
