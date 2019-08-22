@@ -287,11 +287,19 @@ class GamePage {
     }
 
     answer(number) {
+        let answered = false;
         this.timer.stop();
         this.answers.map(x => x.disable());
         const round = this.rounds[this.currentRoundIndex];
         round.right.map(el => {
-            el === number ? this.rightAnswer(number, round.factor) : this.badAnswer(round.right, number);
+            if (el === number && !answered) {
+                this.rightAnswer(number, round.factor);
+                answered = true;
+            }
+            if (el !== number && !answered) {
+                this.badAnswer(round.right, number);
+                answered = true;
+            }
         });
     }
 
