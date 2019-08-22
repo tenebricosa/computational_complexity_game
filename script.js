@@ -260,15 +260,10 @@ class GamePage {
         this.livesContainer = document.querySelector(".lives");
         this.answer = this.answer.bind(this);
         this.answers = [1, 2, 3, 4].map(x => new AnswerButton(document.querySelector(`.answer-${x}`), this.answer));
-        // this.help5050sButton = document.querySelector(".help5050");
         this.timer = new Timer(config.time, () => this.badAnswer(this.rounds[this.currentRoundIndex].right, null));
-
-        // this.help5050 = this.help5050.bind(this);
     }
 
     initialize() {
-    //     this.help5050Button.classList.remove("invisible");
-    //     this.help5050Button.addEventListener("click", this.help5050);
         this.page.classList.remove("invisible");
         this.livesContainer.textContent = this.lives;
     }
@@ -280,7 +275,6 @@ class GamePage {
     }
 
     dispose() {
-        // this.help5050Button.removeEventListener("click", this.help5050);
         this.timer.stop();
         this.clearTask();
         this.clearDescription();
@@ -379,16 +373,6 @@ class GamePage {
         p.textContent = task.description;
         return p;
     }
-
-    // help5050() {
-    //     this.help5050Button.classList.add("invisible");
-    //     const firstWrongAnswer = this.answers.filter(x => !x.isRight)[random(0, 3)];
-    //     const secondWrongAnswer = this.answers.filter(x => !x.isRight && x.index !== firstWrongAnswer.index)[random(0, 2)];
-    //     firstWrongAnswer.wrongAnswer();
-    //     firstWrongAnswer.clearAnswer();
-    //     secondWrongAnswer.wrongAnswer();
-    //     secondWrongAnswer.clearAnswer();
-    // }
 }
 
 class ResultPage {
